@@ -1,0 +1,22 @@
+[
+  {
+    "name": "China",
+    "count": 80000
+  },
+  {
+    "name": "Italy",
+    "count": 19000
+  },
+  {
+    "name": "Spain",
+    "count": 7000
+  },
+  {
+    "name": "South Korea",
+    "count": 10000
+  },
+  {
+    "name": "USA",
+    "count": 3000
+  }
+]
