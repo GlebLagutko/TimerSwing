@@ -46,18 +46,21 @@ class MyFrame extends JFrame {
     public JRootPane createRootPane() {
         JRootPane pane = new JRootPane();
         JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
 
-        // panel.add(new FirstTab());
+        firstTask(panel);
         // secondTask(panel);
-
-        thirdTask(panel);
+        //thirdTask(panel);
         pane.setContentPane(panel);
 
         return pane;
     }
 
+    private void firstTask(JPanel panel) {
+        panel.add(new FirstTab());
+    }
+
     private void thirdTask(JPanel panel) {
+        panel.setLayout(new BorderLayout());
         try (FileReader reader = new FileReader("src\\main\\java\\input.json")) {
             Gson gson = new Gson();
             Country[] countries = gson.fromJson(reader, Country[].class);
