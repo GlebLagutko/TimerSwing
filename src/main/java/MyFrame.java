@@ -1,19 +1,7 @@
-import com.google.gson.Gson;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.labels.PieSectionLabelGenerator;
-import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
-import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.io.FileReader;
-import java.io.IOException;
 
 class MyFrame extends JFrame {
 
@@ -22,7 +10,7 @@ class MyFrame extends JFrame {
             setVisible(true);
             setSize(600, 600);
             MyFrame.this.setLocationRelativeTo(null);
-            this.setResizable(false);
+           // this.setResizable(false);
             addComponentListener(new ComponentAdapter() {
                 @Override
                 public void componentHidden(ComponentEvent e) {
@@ -40,55 +28,27 @@ class MyFrame extends JFrame {
     private JComboBox<String> comboBox;
     private Boolean right = true;
 
-    private JFreeChart chart;
 
     @Override
     public JRootPane createRootPane() {
         JRootPane pane = new JRootPane();
         JPanel panel = new JPanel();
-
-        firstTask(panel);
-        // secondTask(panel);
-        //thirdTask(panel);
+        setSize(600, 600);
+        // firstTask(panel);
+         secondTask(panel);
+       // thirdTask(panel);
         pane.setContentPane(panel);
 
         return pane;
     }
 
     private void firstTask(JPanel panel) {
-        panel.add(new FirstTab());
+        panel.add(new FirstPanel());
     }
 
     private void thirdTask(JPanel panel) {
-        panel.setLayout(new BorderLayout());
-        try (FileReader reader = new FileReader("src\\main\\java\\input.json")) {
-            Gson gson = new Gson();
-            Country[] countries = gson.fromJson(reader, Country[].class);
-            PieDataset pieDataset = createDataset(countries);
-            chart = createChart(pieDataset);
-            PiePlot plot = (PiePlot) chart.getPlot();
-            PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
-                    "{0}: {1} людей, {2}");
-            plot.setLabelGenerator(gen);
-            panel.add(new ChartPanel(chart));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private JFreeChart createChart(final PieDataset dataset) {
-
-        chart = ChartFactory.createPieChart("Больные коронавирусом",
-                dataset, true, true, false);
-        return chart;
-    }
-
-    private PieDataset createDataset(Country[] container) {
-        DefaultPieDataset dataset = new DefaultPieDataset();
-        for (Country elem : container) {
-            dataset.setValue(elem.getName(), elem.getCount());
-        }
-        return dataset;
+        panel.add(new ThirdPanel());
+        //  panel.setPreferredSize(new Dimension(700,700));
     }
 
     private void secondTask(JPanel panel) {
@@ -103,7 +63,8 @@ class MyFrame extends JFrame {
         });
         panel.add(slider);
         panel.add(comboBox);
-        panel.add(new SecondTask(this));
+
+        panel.add(new SecondPanel(this));
     }
 
     public int getSpeed() {

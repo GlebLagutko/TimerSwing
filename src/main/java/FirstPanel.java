@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class FirstTab extends JPanel {
+public class FirstPanel extends JPanel {
 
     private int width, height;
     private int angle;
 
-    public FirstTab() {
+    public FirstPanel() {
         angle = 0;
         width = 450;
         height = 450;
